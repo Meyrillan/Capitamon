@@ -11,7 +11,10 @@ import Foundation
 
 class ViewController: UIViewController {
     
-    var habilidade: String = ""
+    var habilidadeUm = 0
+    var habilidadeDois = 0
+    var habilidadeTres = 0
+    
     
     @IBOutlet weak var pokemonUm: UITextField!
     @IBOutlet weak var baseExperiencePokemonUm: UILabel!
@@ -19,22 +22,28 @@ class ViewController: UIViewController {
     @IBOutlet weak var baseExperiencePokemonTres: UILabel!
     @IBOutlet weak var pokemonDois: UITextField!
     @IBOutlet weak var pokemonTres: UITextField!
+    @IBOutlet weak var experienciaTotal: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        somar()
     }
     
     @IBAction func btnCalculate(_ sender: Any) {
         
         // Busca a experiencia de um pokemon usando o nome do pokemon que a pessoa preencheu em PokemonUM, PokemonDOIS e PokemonTres
         let nomePokemonUm = self.pokemonUm.text
+        let nomePokeUmFormatado = nomePokemonUm?.lowercased().replacingOccurrences(of: " ", with: "")
         let nomePokemonDois = self.pokemonDois.text
+        let nomePokeDoisFormatado = nomePokemonDois?.lowercased().replacingOccurrences(of: " ", with: "")
         let nomePokemonTres = self.pokemonTres.text
+        let nomePokeTresFormatado = nomePokemonTres?.lowercased().replacingOccurrences(of: " ", with: "")
+
         
-        let stringURL1 = "https://pokeapi.co/api/v2/pokemon/\(nomePokemonUm!)"
-        let stringURL2 = "https://pokeapi.co/api/v2/pokemon/\(nomePokemonDois!)"
-        let stringURL3 = "https://pokeapi.co/api/v2/pokemon/\(nomePokemonTres!)"
+        let stringURL1 = "https://pokeapi.co/api/v2/pokemon/\(nomePokeUmFormatado!)"
+        let stringURL2 = "https://pokeapi.co/api/v2/pokemon/\(nomePokeDoisFormatado!)"
+        let stringURL3 = "https://pokeapi.co/api/v2/pokemon/\(nomePokeTresFormatado!)"
         
         let url1 = URL(string:stringURL1)!
         let url2 = URL(string:stringURL2)!
@@ -49,10 +58,11 @@ class ViewController: UIViewController {
                 
                 DispatchQueue.main.async {
                     
-         //conversão de int pra string
-                    let guardaInt = jsonData.baseExperience
-                    let experiencePokemonUm = String(guardaInt)
+                    //conversão de int pra string
+                    self.habilidadeUm = jsonData.baseExperience
+                    let experiencePokemonUm = String(self.habilidadeUm)
                     self.baseExperiencePokemonUm.text = "Experiência: " + experiencePokemonUm
+                    self.somar()
                 }
             } catch {
                 print("JSON error: \(error.localizedDescription)")
@@ -70,10 +80,11 @@ class ViewController: UIViewController {
                 
                 DispatchQueue.main.async {
                     
-         //conversão de int pra string
-                    let guardaInt = jsonData.baseExperience
-                    let experiencePokemonDois = String(guardaInt)
+                    //conversão de int pra string
+                    self.habilidadeDois = jsonData.baseExperience
+                    let experiencePokemonDois = String(self.habilidadeDois)
                     self.baseExperiencePokemonDois.text = "Experiência: " + experiencePokemonDois
+                    self.somar()
                 }
             } catch {
                 print("JSON error: \(error.localizedDescription)")
@@ -90,10 +101,11 @@ class ViewController: UIViewController {
                 
                 DispatchQueue.main.async {
                     
-         //conversão de int pra string
-                    let guardaInt = jsonData.baseExperience
-                    let experiencePokemonTres = String(guardaInt)
+                    //conversão de int pra string
+                    self.habilidadeTres = jsonData.baseExperience
+                    let experiencePokemonTres = String(self.habilidadeTres)
                     self.baseExperiencePokemonTres.text = "Experiência: " + experiencePokemonTres
+                    self.somar()
                 }
             } catch {
                 print("JSON error: \(error.localizedDescription)")
@@ -108,6 +120,11 @@ class ViewController: UIViewController {
         task3.resume()
         
     }
+    
+    func somar() {
+        experienciaTotal.text =  "Experiência Total: " + (String(self.habilidadeUm + self.habilidadeDois + self.habilidadeTres))
+    }
+    
 }
 
 //Dificuldades:

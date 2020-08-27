@@ -69,14 +69,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Experiência:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Z2-AU-GGI">
-                                <rect key="frame" x="25" y="607" width="352" height="21"/>
+                                <rect key="frame" x="20" y="607" width="352" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="spE-pz-9AP">
-                                <rect key="frame" x="20" y="761" width="374" height="56"/>
+                                <rect key="frame" x="20" y="674" width="374" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Calcular ">
@@ -93,6 +93,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mz2-Ja-pTb">
+                                <rect key="frame" x="20" y="769" width="374" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -101,6 +108,7 @@
                         <outlet property="baseExperiencePokemonDois" destination="XnB-hb-063" id="aCs-d4-yZP"/>
                         <outlet property="baseExperiencePokemonTres" destination="6Z2-AU-GGI" id="0ti-qP-siE"/>
                         <outlet property="baseExperiencePokemonUm" destination="knd-CQ-WTI" id="JIr-Dc-0uL"/>
+                        <outlet property="experienciaTotal" destination="mz2-Ja-pTb" id="OxM-Et-L99"/>
                         <outlet property="pokemonDois" destination="wuh-XD-Ife" id="xi4-Bb-PZX"/>
                         <outlet property="pokemonTres" destination="vzy-Nb-3RK" id="zaF-4r-LMt"/>
                         <outlet property="pokemonUm" destination="Atf-ww-Nwf" id="sap-nZ-Ljv"/>
