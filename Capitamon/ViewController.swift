@@ -31,6 +31,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         pokemonDois.delegate = self
         pokemonTres.delegate = self
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.apagar))
+        view.addGestureRecognizer(tap)
+        
         // Do any additional setup after loading the view.
         somar()
     }
@@ -44,6 +47,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
             textField.resignFirstResponder()
         }
         return false
+    }
+    
+    @objc func apagar(){
+        view.endEditing(true)
     }
     
     
@@ -145,5 +152,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
 }
 
 //Dificuldades:
-//1) Como fazer as tasks retornarem valores inteiros pra que possamos somar e, assim, conseguir a experiência total?
+//1) Como fazer as tasks retornarem valores inteiros pra que possamos somar e, assim, conseguir a experiência total? RESOLVIDO!!!
 //2) Como fazer um laço pra otimizar o código e realizar só uma task, em vez de três?
+//3) Como fazer a tela subir quando o teclado sobe? (ScrollView no artigo de Nádia)
+//4) Como fazer o teclado descer quando o usuário clica na tela (TapGesture, tanto eu quanto Meyri já fizemos isso antes)
+
+//Para a próxima semana:
+//1) Deixar o app mais divertido melhorando a UI
+//2) Implementar um ranking na memória
+//3) Como acessar sensores do iPhone ("para finalizar, veja o seu pokemon girando!")
