@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
     
     var habilidadeUm = 0
     var habilidadeDois = 0
@@ -26,9 +26,26 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        pokemonUm.delegate = self
+        pokemonDois.delegate = self
+        pokemonTres.delegate = self
+        
         // Do any additional setup after loading the view.
         somar()
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == pokemonUm {
+            pokemonDois.becomeFirstResponder()
+        } else if textField == pokemonDois {
+            pokemonTres.becomeFirstResponder()
+        } else if textField == pokemonTres {
+            textField.resignFirstResponder()
+        }
+        return false
+    }
+    
     
     @IBAction func btnCalculate(_ sender: Any) {
         
