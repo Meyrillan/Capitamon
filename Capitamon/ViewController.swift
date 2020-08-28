@@ -49,6 +49,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         return false
     }
     
+    //fim da ação usando a tap gesture?
     @objc func apagar(){
         view.endEditing(true)
     }
@@ -63,7 +64,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let nomePokeDoisFormatado = nomePokemonDois?.lowercased().replacingOccurrences(of: " ", with: "")
         let nomePokemonTres = self.pokemonTres.text
         let nomePokeTresFormatado = nomePokemonTres?.lowercased().replacingOccurrences(of: " ", with: "")
-
         
         let stringURL1 = "https://pokeapi.co/api/v2/pokemon/\(nomePokeUmFormatado!)"
         let stringURL2 = "https://pokeapi.co/api/v2/pokemon/\(nomePokeDoisFormatado!)"
