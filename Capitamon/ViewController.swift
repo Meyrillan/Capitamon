@@ -11,10 +11,15 @@ import Foundation
 
 class ViewController: UIViewController, UITextFieldDelegate {
     
+    var url =  "https://pokeapi.co/api/v2/pokemon/"
+    
     var habilidadeUm = 0
     var habilidadeDois = 0
     var habilidadeTres = 0
     
+    var experiencePokemonUm = ""
+    var experiencePokemonDois = ""
+    var experiencePokemonTres = ""
     
     @IBOutlet weak var pokemonUm: UITextField!
     @IBOutlet weak var baseExperiencePokemonUm: UILabel!
@@ -35,7 +40,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         view.addGestureRecognizer(tap)
         
         // Do any additional setup after loading the view.
-        somar()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -58,104 +62,89 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBAction func btnCalculate(_ sender: Any) {
         
         // Busca a experiencia de um pokemon usando o nome do pokemon que a pessoa preencheu em PokemonUM, PokemonDOIS e PokemonTres
-        let nomePokemonUm = self.pokemonUm.text
-        let nomePokeUmFormatado = nomePokemonUm?.lowercased().replacingOccurrences(of: " ", with: "")
-        let nomePokemonDois = self.pokemonDois.text
-        let nomePokeDoisFormatado = nomePokemonDois?.lowercased().replacingOccurrences(of: " ", with: "")
-        let nomePokemonTres = self.pokemonTres.text
-        let nomePokeTresFormatado = nomePokemonTres?.lowercased().replacingOccurrences(of: " ", with: "")
+        let nomePokemonUm = self.pokemonUm.text!
+        let nomePokeUmFormatado = nomePokemonUm.lowercased().replacingOccurrences(of: " ", with: "")
+        let nomePokemonDois = self.pokemonDois.text!
+        let nomePokeDoisFormatado = nomePokemonDois.lowercased().replacingOccurrences(of: " ", with: "")
+        let nomePokemonTres = self.pokemonTres.text!
+        let nomePokeTresFormatado = nomePokemonTres.lowercased().replacingOccurrences(of: " ", with: "")
         
-        let stringURL1 = "https://pokeapi.co/api/v2/pokemon/\(nomePokeUmFormatado!)"
-        let stringURL2 = "https://pokeapi.co/api/v2/pokemon/\(nomePokeDoisFormatado!)"
-        let stringURL3 = "https://pokeapi.co/api/v2/pokemon/\(nomePokeTresFormatado!)"
+        let list = [nomePokeUmFormatado, nomePokeDoisFormatado, nomePokeTresFormatado]
         
-        let url1 = URL(string:stringURL1)!
-        let url2 = URL(string:stringURL2)!
-        let url3 = URL(string:stringURL3)!
-        
-        let session = URLSession.shared
-        
-        let task1 = session.dataTask(with: url1) { data, response, serverError in
-            do {
-                let decoder = JSONDecoder()
-                let jsonData = try decoder.decode(Pokemon.self, from: data!)
-                
-                DispatchQueue.main.async {
-                    
-                    //conversão de int pra string
-                    self.habilidadeUm = jsonData.baseExperience
-                    let experiencePokemonUm = String(self.habilidadeUm)
-                    self.baseExperiencePokemonUm.text = "Experiência: " + experiencePokemonUm
-                    self.somar()
-                }
-            } catch {
-                print("JSON error: \(error.localizedDescription)")
-                DispatchQueue.main.async {
-                    self.baseExperiencePokemonUm.text = "Esse Pokemón não existe ou está escrito errado"
-                }
+        func performNetworkRequest(url: String,
+                                   completion: @escaping (Data?, Error?) -> Void) {
+            let requestUrl = URL(string: url)
+            let task = URLSession.shared.dataTask(with: requestUrl!) { (data, response, error) in
+                completion(data, error)
             }
+            task.resume()
         }
         
-        
-        let task2 = session.dataTask(with: url2) { data, response, serverError in
-            do {
-                let decoder = JSONDecoder()
-                let jsonData = try decoder.decode(Pokemon.self, from: data!)
-                
-                DispatchQueue.main.async {
+        for index in 0...2 {
+            performNetworkRequest(url: "\(url)\(list[index])") { data, error in
+                do {
                     
-                    //conversão de int pra string
-                    self.habilidadeDois = jsonData.baseExperience
-                    let experiencePokemonDois = String(self.habilidadeDois)
-                    self.baseExperiencePokemonDois.text = "Experiência: " + experiencePokemonDois
-                    self.somar()
-                }
-            } catch {
-                print("JSON error: \(error.localizedDescription)")
-                DispatchQueue.main.async {
-                    self.baseExperiencePokemonDois.text = "Esse Pokemón não existe ou está escrito errado"
-                }
-            }
-        }
-        
-        let task3 = session.dataTask(with: url3) { data, response, serverError in
-            do {
-                let decoder = JSONDecoder()
-                let jsonData = try decoder.decode(Pokemon.self, from: data!)
-                
-                DispatchQueue.main.async {
+                    let decoder = JSONDecoder()
+                    let pokemonData = try decoder.decode(Pokemon.self, from: data!)
                     
-                    //conversão de int pra string
-                    self.habilidadeTres = jsonData.baseExperience
-                    let experiencePokemonTres = String(self.habilidadeTres)
-                    self.baseExperiencePokemonTres.text = "Experiência: " + experiencePokemonTres
-                    self.somar()
+                    DispatchQueue.main.async {
+                        
+                        switch index {
+                        case 0:
+                            self.habilidadeUm = pokemonData.baseExperience
+                            let experiencePokemonUm = String(self.habilidadeUm)
+                            self.baseExperiencePokemonUm.text = "Experiência: " + experiencePokemonUm
+                            self.somar()
+                        case 1:
+                            self.habilidadeDois = pokemonData.baseExperience
+                            let experiencePokemonDois = String(self.habilidadeDois)
+                            self.baseExperiencePokemonDois.text = "Experiência: " + experiencePokemonDois
+                            self.somar()
+                        case 2:
+                            self.habilidadeTres = pokemonData.baseExperience
+                            let experiencePokemonTres = String(self.habilidadeTres)
+                            self.baseExperiencePokemonTres.text = "Experiência: " + experiencePokemonTres
+                            self.somar()
+                        default: print("deu ruim")
+                            
+                        }
+                        let result = String(data: data!, encoding: .utf8)!
+                        print(result)
+                        print("\n")
+                    }
+                    
+                } catch {
+                    print("JSON error: \(error.localizedDescription)")
+                    DispatchQueue.main.async {
+                        switch index {
+                        case 0:
+                            self.baseExperiencePokemonUm.text = "Esse Pokemón não existe ou está escrito errado"
+                        case 1:
+                            self.baseExperiencePokemonDois.text = "Esse Pokemón não existe ou está escrito errado"
+                        case 2:
+                            self.baseExperiencePokemonTres.text = "Esse Pokemón não existe ou está escrito errado"
+                        default: print("deu ruim")
+                        }
+                        
+                    }
                 }
-            } catch {
-                print("JSON error: \(error.localizedDescription)")
-                DispatchQueue.main.async {
-                    self.baseExperiencePokemonTres.text = "Esse Pokemón não existe ou está escrito errado"
-                }
+                
             }
+            
         }
-        
-        task1.resume()
-        task2.resume()
-        task3.resume()
-        
     }
     
     func somar() {
-        experienciaTotal.text =  "Experiência Total: " + (String(self.habilidadeUm + self.habilidadeDois + self.habilidadeTres))
+        self.experienciaTotal.text =  "Experiência Total: " + (String(self.habilidadeUm + self.habilidadeDois + self.habilidadeTres))
     }
     
 }
 
 //Dificuldades:
 //1) Como fazer as tasks retornarem valores inteiros pra que possamos somar e, assim, conseguir a experiência total? RESOLVIDO!!!
-//2) Como fazer um laço pra otimizar o código e realizar só uma task, em vez de três?
+//2) Como fazer um laço pra otimizar o código e realizar só uma task, em vez de três? RESOLVIDO!!!
 //3) Como fazer a tela subir quando o teclado sobe? (ScrollView no artigo de Nádia)
-//4) Como fazer o teclado descer quando o usuário clica na tela (TapGesture, tanto eu quanto Meyri já fizemos isso antes)
+//4) Como fazer o teclado descer quando o usuário clica na tela (TapGesture, tanto eu quanto Meyri já fizemos isso antes) RESOLVIDO!!!
 
 //Para a próxima semana:
 //1) Deixar o app mais divertido melhorando a UI
