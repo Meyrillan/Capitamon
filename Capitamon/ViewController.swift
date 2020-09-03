@@ -17,6 +17,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var habilidadeDois = 0
     var habilidadeTres = 0
     
+    var idUm = 0
+    var idDois = 0
+    var idTres = 0
     
     @IBOutlet weak var pokemonUm: UITextField!
     @IBOutlet weak var baseExperiencePokemonUm: UILabel!
@@ -55,6 +58,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
         view.endEditing(true)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "Game" {
+            let vcGiroscopio = segue.destination as? GiroscopioViewController
+            vcGiroscopio?.listIds = [String(idUm), String(idDois), String(idTres)]
+            vcGiroscopio?.listNames = [pokemonUm.text!, pokemonDois.text!, pokemonTres.text!]
+            vcGiroscopio?.listBaseExperience = [habilidadeUm, habilidadeDois, habilidadeTres]
+        }
+    }
     
     @IBAction func btnCalculate(_ sender: Any) {
         
@@ -89,6 +100,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         switch index {
                         case 0:
                             self.habilidadeUm = pokemonData.baseExperience
+                            self.idUm = pokemonData.id
                             let experiencePokemonUm = String(self.habilidadeUm)
                             self.baseExperiencePokemonUm.text = "Experiência: " + experiencePokemonUm
                             self.somar()
@@ -96,18 +108,17 @@ class ViewController: UIViewController, UITextFieldDelegate {
                             self.habilidadeDois = pokemonData.baseExperience
                             let experiencePokemonDois = String(self.habilidadeDois)
                             self.baseExperiencePokemonDois.text = "Experiência: " + experiencePokemonDois
+                            self.idDois = pokemonData.id
                             self.somar()
                         case 2:
                             self.habilidadeTres = pokemonData.baseExperience
                             let experiencePokemonTres = String(self.habilidadeTres)
                             self.baseExperiencePokemonTres.text = "Experiência: " + experiencePokemonTres
+                            self.idTres = pokemonData.id
                             self.somar()
                         default: print("deu ruim")
                             
                         }
-                        let result = String(data: data!, encoding: .utf8)!
-                        print(result)
-                        print("\n")
                     }
                     
                 } catch {
@@ -133,6 +144,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     func somar() {
         self.experienciaTotal.text =  "Experiência Total: " + (String(self.habilidadeUm + self.habilidadeDois + self.habilidadeTres))
+    }
+    
+    
+    @IBAction func btnGiroscopio(_ sender: Any) {
+        
     }
     
 }
