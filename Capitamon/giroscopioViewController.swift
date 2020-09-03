@@ -21,18 +21,18 @@ class GiroscopioViewController: UIViewController {
     var listNames: [String]?
     
     var listBaseExperience: [Int]!
-    
+        
     @IBOutlet weak var imagePokeUm: UIImageView!
     @IBOutlet weak var imagePokeDois: UIImageView!
     @IBOutlet weak var imagePokeTres: UIImageView!
-    @IBOutlet weak var comparacaoRapidez: UILabel!
+    @IBOutlet weak var textoFinal: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.load()
         
-        comparacaoRapidez.text = " "
+        textoFinal.text = " "
         
         manager.deviceMotionUpdateInterval = 0.01
         
@@ -57,31 +57,34 @@ class GiroscopioViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         
-        var rapidezUm = 0.0
-        var rapidezDois = 0.0
-        var rapidezTres = 0.0
+        
+//        var rapidezUm = 0.0
+//        var rapidezDois = 0.0
+//        var rapidezTres = 0.0
         
         UIView.animate(withDuration: (10 - (Double(listBaseExperience[0]/14)))) {
             self.imagePokeUm.frame = CGRect(x: 20, y: 20, width: 121, height: 87)
-            rapidezUm = 4.0
+//            rapidezUm = 4.0
         }
         
         UIView.animate(withDuration: (10 - (Double(listBaseExperience[1]/14)))) {
             self.imagePokeDois.frame = CGRect(x: 147, y: 20, width: 121, height: 87)
-            rapidezDois = 5.0
+//            rapidezDois = 5.0
         }
         
         UIView.animate(withDuration: (10 - (Double(listBaseExperience[2]/14)))) {
             self.imagePokeTres.frame = CGRect(x: 273, y: 20, width: 121, height: 87)
-            rapidezTres = 7.0
+//            rapidezTres = 7.0
         }
         
-        if rapidezUm > rapidezDois {
-            if rapidezUm > rapidezTres {
-                
-                comparacaoRapidez.text = "\(listNames![0]) é o Pokémon mais rápido"
-            }
-        }
+        textoFinal.text = "Parabéns, os seus Pokémons capitalistas conseguiram ganhar R$ \(String(listBaseExperience[0] + listBaseExperience[1] + listBaseExperience[2])) reais"
+        
+//        if rapidezUm > rapidezDois {
+//            if rapidezUm > rapidezTres {
+//
+//                textoFinal.text = "\(listNames![0]) é o Pokémon mais rápido"
+//            }
+//        }
         
     }
     
