@@ -78,6 +78,7 @@
                                 </state>
                                 <connections>
                                     <action selector="btnCalculate:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fUw-Tq-JUI"/>
+                                    <segue destination="kwu-vz-qib" kind="show" identifier="Game" id="QJj-fN-6qA"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Experiência:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XnB-hb-063">
@@ -87,22 +88,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mz2-Ja-pTb">
-                                <rect key="frame" x="20" y="769" width="374" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ni-lG-bKR">
-                                <rect key="frame" x="170" y="798" width="74" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Giroscópio"/>
-                                <connections>
-                                    <action selector="btnGiroscopio:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jta-tU-rRm"/>
-                                    <segue destination="kwu-vz-qib" kind="show" identifier="Game" id="JKJ-1x-CWe"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wuh-XD-Ife">
                                 <rect key="frame" x="20" y="387" width="374" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -117,7 +102,6 @@
                         <outlet property="baseExperiencePokemonDois" destination="XnB-hb-063" id="aCs-d4-yZP"/>
                         <outlet property="baseExperiencePokemonTres" destination="6Z2-AU-GGI" id="0ti-qP-siE"/>
                         <outlet property="baseExperiencePokemonUm" destination="knd-CQ-WTI" id="JIr-Dc-0uL"/>
-                        <outlet property="experienciaTotal" destination="mz2-Ja-pTb" id="OxM-Et-L99"/>
                         <outlet property="pokemonDois" destination="wuh-XD-Ife" id="xi4-Bb-PZX"/>
                         <outlet property="pokemonTres" destination="vzy-Nb-3RK" id="zaF-4r-LMt"/>
                         <outlet property="pokemonUm" destination="Atf-ww-Nwf" id="sap-nZ-Ljv"/>
@@ -147,8 +131,8 @@
                                 <rect key="frame" x="147" y="378" width="121" height="87"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTB-U8-Xyk">
-                                <rect key="frame" x="20" y="702" width="374" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTB-U8-Xyk">
+                                <rect key="frame" x="20" y="702" width="374" height="82"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -160,10 +144,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="L7U-Ax-Dbb"/>
                     <connections>
-                        <outlet property="comparacaoRapidez" destination="gTB-U8-Xyk" id="pJw-0z-OOA"/>
                         <outlet property="imagePokeDois" destination="0jG-Sj-wVY" id="Iyl-ai-4Y1"/>
                         <outlet property="imagePokeTres" destination="EkN-OO-bTk" id="Viz-Rm-SUT"/>
                         <outlet property="imagePokeUm" destination="ReA-7Q-4ca" id="noK-gj-kFy"/>
+                        <outlet property="textoFinal" destination="gTB-U8-Xyk" id="pJw-0z-OOA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pRE-td-cum" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
