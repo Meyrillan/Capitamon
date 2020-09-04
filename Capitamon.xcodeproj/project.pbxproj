@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7DC74C0524FD842400629BBE /* Capitamon.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7DC74C0324FD842400629BBE /* Capitamon.xcdatamodeld */; };
+		8B0FF32A2501BF1C005034BD /* ButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0FF3292501BF1C005034BD /* ButtonExtension.swift */; };
 		8B291A5724F807AC00807A3B /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B291A5624F807AC00807A3B /* Pokemon.swift */; };
 		8B2DC8AA25003A6300FA6F1F /* giroscopioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2DC8A925003A6300FA6F1F /* giroscopioViewController.swift */; };
 		8BF8D2B224F6ECF600442B97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF8D2B124F6ECF600442B97 /* AppDelegate.swift */; };
@@ -20,6 +21,9 @@
 
 /* Begin PBXFileReference section */
 		7DC74C0424FD842400629BBE /* Capitamon.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Capitamon.xcdatamodel; sourceTree = "<group>"; };
+		8B0FF3272501B7C6005034BD /* MuseoSans_500.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MuseoSans_500.otf; sourceTree = "<group>"; };
+		8B0FF3282501B7C6005034BD /* MuseoSans_500_Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MuseoSans_500_Italic.otf; sourceTree = "<group>"; };
+		8B0FF3292501BF1C005034BD /* ButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonExtension.swift; sourceTree = "<group>"; };
 		8B291A5624F807AC00807A3B /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 		8B2DC8A925003A6300FA6F1F /* giroscopioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = giroscopioViewController.swift; sourceTree = "<group>"; };
 		8BF8D2AE24F6ECF600442B97 /* Capitamon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Capitamon.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -43,6 +47,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8B0FF3262501B78B005034BD /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				8B0FF3282501B7C6005034BD /* MuseoSans_500_Italic.otf */,
+				8B0FF3272501B7C6005034BD /* MuseoSans_500.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		8BF8D2A524F6ECF600442B97 = {
 			isa = PBXGroup;
 			children = (
@@ -62,6 +75,7 @@
 		8BF8D2B024F6ECF600442B97 /* Capitamon */ = {
 			isa = PBXGroup;
 			children = (
+				8B0FF3262501B78B005034BD /* Fonts */,
 				8BF8D2B124F6ECF600442B97 /* AppDelegate.swift */,
 				7DC74C0324FD842400629BBE /* Capitamon.xcdatamodeld */,
 				8BF8D2B324F6ECF600442B97 /* SceneDelegate.swift */,
@@ -69,9 +83,10 @@
 				8BF8D2B724F6ECF600442B97 /* Main.storyboard */,
 				8BF8D2BA24F6ECFA00442B97 /* Assets.xcassets */,
 				8BF8D2BC24F6ECFA00442B97 /* LaunchScreen.storyboard */,
-				8BF8D2BF24F6ECFA00442B97 /* Info.plist */,
 				8B291A5624F807AC00807A3B /* Pokemon.swift */,
 				8B2DC8A925003A6300FA6F1F /* giroscopioViewController.swift */,
+				8B0FF3292501BF1C005034BD /* ButtonExtension.swift */,
+				8BF8D2BF24F6ECFA00442B97 /* Info.plist */,
 			);
 			path = Capitamon;
 			sourceTree = "<group>";
@@ -147,6 +162,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B0FF32A2501BF1C005034BD /* ButtonExtension.swift in Sources */,
 				8B2DC8AA25003A6300FA6F1F /* giroscopioViewController.swift in Sources */,
 				8BF8D2B624F6ECF600442B97 /* ViewController.swift in Sources */,
 				7DC74C0524FD842400629BBE /* Capitamon.xcdatamodeld in Sources */,

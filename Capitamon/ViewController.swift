@@ -13,6 +13,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     var url =  "https://pokeapi.co/api/v2/pokemon/"
     
+    var qtConfirmacoes = 0
+    
     var habilidadeUm = 0
     var habilidadeDois = 0
     var habilidadeTres = 0
@@ -21,16 +23,23 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var idDois = 0
     var idTres = 0
     
+    @IBOutlet weak var erroPokeUm: UILabel!
+    @IBOutlet weak var erroPokeDois: UILabel!
+    @IBOutlet weak var erroPokeTres: UILabel!
     @IBOutlet weak var pokemonUm: UITextField!
-    @IBOutlet weak var baseExperiencePokemonUm: UILabel!
-    @IBOutlet weak var baseExperiencePokemonDois: UILabel!
-    @IBOutlet weak var baseExperiencePokemonTres: UILabel!
     @IBOutlet weak var pokemonDois: UITextField!
     @IBOutlet weak var pokemonTres: UITextField!
+    @IBOutlet weak var viewBackground: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        viewBackground.layer.cornerRadius = 24
+        
+        
+        erroPokeUm.text = ""
+        erroPokeDois.text = ""
+        erroPokeTres.text = ""
         pokemonUm.delegate = self
         pokemonDois.delegate = self
         pokemonTres.delegate = self
@@ -68,6 +77,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func btnCalculate(_ sender: Any) {
         
+        qtConfirmacoes = 0
+        
         // Busca a experiencia de um pokemon usando o nome do pokemon que a pessoa preencheu em PokemonUM, PokemonDOIS e PokemonTres
         let nomePokemonUm = self.pokemonUm.text!
         let nomePokeUmFormatado = nomePokemonUm.lowercased().replacingOccurrences(of: " ", with: "")
@@ -96,28 +107,37 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     
                     DispatchQueue.main.async {
                         
+                        self.qtConfirmacoes = self.qtConfirmacoes + 1
+                        
                         switch index {
                         case 0:
                             self.habilidadeUm = pokemonData.baseExperience
                             self.idUm = pokemonData.id
                             let experiencePokemonUm = String(self.habilidadeUm)
-                            self.baseExperiencePokemonUm.text = "Experiência: " + experiencePokemonUm
+                            self.erroPokeUm.text = "Experiência: " + experiencePokemonUm
 //                            self.somar()
                         case 1:
                             self.habilidadeDois = pokemonData.baseExperience
                             let experiencePokemonDois = String(self.habilidadeDois)
-                            self.baseExperiencePokemonDois.text = "Experiência: " + experiencePokemonDois
+                            self.erroPokeDois.text = "Experiência: " + experiencePokemonDois
                             self.idDois = pokemonData.id
+                            
 //                            self.somar()
                         case 2:
                             self.habilidadeTres = pokemonData.baseExperience
                             let experiencePokemonTres = String(self.habilidadeTres)
-                            self.baseExperiencePokemonTres.text = "Experiência: " + experiencePokemonTres
+                            self.erroPokeTres.text = "Experiência: " + experiencePokemonTres
                             self.idTres = pokemonData.id
+                            
 //                            self.somar()
                         default: print("deu ruim")
                             
                         }
+                        
+                        if self.qtConfirmacoes == 3 {
+                            self.performSegue(withIdentifier: "Game", sender: nil)
+                        }
+                        
                     }
                     
                 } catch {
@@ -125,11 +145,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     DispatchQueue.main.async {
                         switch index {
                         case 0:
-                            self.baseExperiencePokemonUm.text = "Esse Pokemón não existe ou está escrito errado"
+                            self.erroPokeUm.text = "Esse pokémon não existe ou está escrito errado."
                         case 1:
-                            self.baseExperiencePokemonDois.text = "Esse Pokemón não existe ou está escrito errado"
+                            self.erroPokeDois.text = "Esse pokémon não existe ou está escrito errado."
                         case 2:
-                            self.baseExperiencePokemonTres.text = "Esse Pokemón não existe ou está escrito errado"
+                            self.erroPokeTres.text = "Esse pokémon não existe ou está escrito errado."
                         default: print("deu ruim")
                         }
                         
